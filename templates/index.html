@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rhani Cloud</title>
+</head>
+
+<body>
+    Id server : {{data["id"]}}
+    <br />
+    Memory : {{data["memory"]}}
+    <br />
+    Cpu : {{data["cpu"]}}
+    <br />
+        {% if status_power %} Status server <b>aktif</b> {% else %} Status server
+        <b>tidak aktif</b>
+        {% endif %}
+    <br />
+        Ip : {{ip["ip"]}}
+    <br />
+    <br>
+    <form action="" method="post" id="myForm">
+        <input type="hidden" id="currentStatus" value="{{ status_power }}" />
+        <input type="submit" name="btnserver" value="on"
+            onclick="alert('Server anda akan dihidupkan'); return confirmSubmit();" {% if status_power %} disabled {%
+            endif %} />
+
+        <!-- jarak -->
+        <input type="submit" name="btnserver" value="off" onclick="
+        let suck = confirm('Apakah anda ingin mematikan server?');
+        if (suck) {
+           alert('Berhasil mematikan server');
+        }
+        else {
+           return false;
+        }" {% if not status_power %} disabled {% endif %} />
+    </form>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</body>
+
+</html>

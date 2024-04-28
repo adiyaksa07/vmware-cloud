@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Rhani Cloud</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        html,
+        body {
+          height: 100%;
+        }
+        
+        .form-signin {
+          max-width: 330px;
+          padding: 1rem;
+        }
+        
+        .form-signin .form-floating:focus-within {
+          z-index: 2;
+        }
+        
+        .form-signin input[type="email"] {
+          margin-bottom: -1px;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+        
+        .form-signin input[type="password"] {
+          margin-bottom: 10px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+        </style>
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <main class="form-signin w-100 m-auto">
+        <form action="register" method="post">
+            <img class="mb-4" src="https://www.svgrepo.com/show/373350/server.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 fw-normal">Register Rhani Cloud</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control rounded" name="username" id="floatingInput" placeholder="Username" required>
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="email" class="form-control rounded" name="email" id="floatingInput" placeholder="Email" required>
+              <label for="floatingInput">Email</label>
+          </div>
+            <div class="form-floating mt-2">
+                <input type="password" class="form-control rounded" name="password" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control rounded" name="confirm_password" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Confirm Password</label>
+            </div>
+            
+            <button class="btn btn-primary w-100 text-light py-2" type="submit">Create Account</button>
+            <a href="{{ url_for('auth.login') }} ">Already have an account?</a>
+        </form>
+    </main>
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+  {% if alert_conf %}
+  <script>
+    const Toast2 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast2.fire({
+      icon: "error",
+      title: "Make sure that the password and confirmation password are the same, even though they are distinct!"
+    });
+  </script>
+  {% endif %}
+
+  {% if alert %}
+      <script>
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: "Username is already in use. Please use another username!"
+        });
+      </script>
+  {% endif %}
+
+  {% if alert_email %}
+  <script>
+    const Toast12 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast12.fire({
+      icon: "error",
+      title: "Email is already in use. Please use another email!"
+    });
+  </script>
+{% endif %}
+
+  {% if alert_length %}
+  <script>
+    const Toast1 = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+
+    Toast1.fire({
+      icon: "error",
+      title: "Make sure your username or email does not exceed the maximum text size of 70."
+    });
+  </script>
+{% endif %}
+
+  <script>
+      if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+  </script>
+</body>
+
+</html>
